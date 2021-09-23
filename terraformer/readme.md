@@ -1,0 +1,2 @@
+This is a Terraform state and TF file dump from a separate process that has run that collects all the current state of your AWS environment. 
+It is captured using [Terraformer](https://github.com/GoogleCloudPlatform/terraformer).

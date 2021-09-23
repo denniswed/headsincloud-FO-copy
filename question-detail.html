@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FedOverflow</title>
+
+    <script src="uswds-2.12.1/js/uswds-init.min.js"></script>
+    <link rel="stylesheet" href="uswds-2.12.1/css/uswds.min.css">
+</head>
+<body>
+
+<script src="uswds-2.12.1/js/uswds.min.js"></script>
+<script src="app.js"></script>
+<script>document.addEventListener('DOMContentLoaded', fetchSingleQuestion);</script>
+
+<!-- BEGIN HEADER ROW -->
+<div class="usa-overlay"></div>
+<header class="usa-header usa-header--basic">
+  <div class="usa-nav-container">
+    <div class="usa-navbar">
+      <div class="usa-logo" id="basic-logo">
+        <em class="usa-logo__text">
+          <a href="index.html" title="&lt;Project title&gt;">
+            <svg class="usa-icon text-middle" aria-hidden="true" focusable="false" role="img">
+              <use xlink:href="uswds-2.12.1/img/sprite.svg#code"></use>
+            </svg><span class="text-primary">Fed</span>Overflow
+          </a>
+        </em>
+      </div>
+      <button class="usa-menu-btn">Menu</button>
+    </div>
+    <nav aria-label="Primary navigation" class="usa-nav">
+      <button class="usa-nav__close">
+        <img src="uswds-2.12.1/img/usa-icons/close.svg" role="img" alt="Close" />
+      </button>
+      <ul class="usa-nav__primary usa-accordion">
+        <li class="usa-nav__primary-item">
+          <button
+                  class="usa-accordion__button usa-nav__link usa-current"
+                  aria-expanded="false"
+                  aria-controls="basic-nav-section-one"
+          >
+            <span>Questions</span>
+          </button>
+
+          <ul id="basic-nav-section-one" class="usa-nav__submenu">
+            <li class="usa-nav__submenu-item">
+              <a href="index.html"> Browse Questions </a>
+            </li>
+            <li class="usa-nav__submenu-item">
+              <a href="ask-question.html"> Ask a Question </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="usa-nav__primary-item">
+          <a href="trends.html" class="usa-nav__link">
+            <span>Trends</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- TODO if we have time -->
+<!--      <form class="usa-search usa-search&#45;&#45;small" role="search">-->
+<!--        <label class="usa-sr-only" for="basic-search-field-en-small">-->
+<!--          Search-->
+<!--        </label>-->
+<!--        <input-->
+<!--                class="usa-input"-->
+<!--                id="basic-search-field-en-small"-->
+<!--                type="search"-->
+<!--                name="search"-->
+<!--        />-->
+<!--        <button class="usa-button" type="submit">-->
+<!--          <span class="usa-sr-only">Search</span>-->
+<!--        </button>-->
+<!--      </form>-->
+    </nav>
+  </div>
+</header>
+<!-- END HEADER ROW -->
+
+<main id="main-content">
+
+  <div class="grid-container">
+
+    <div class="grid-row margin-top-3">
+      <!-- START QUESTIONS DETAIL -->
+      <div id="loading">Loading...</div>
+      <div id="question-detail" class="grid-offset-1 grid-col-10"></div>
+      <!-- END QUESTION DETAIL -->
+    </div>
+
+    <div id="answer-section" class="grid-row" style="display: none">
+      <div class="grid-offset-1 grid-col-10">
+        <h3>Answers</h3>
+      </div>
+      <!-- START LIST ANSWERS -->
+      <div id="answer-list" class="grid-offset-1 grid-col-10"></div>
+
+      <!-- Example button/svg that will be cloned then removed once we're done building the answers -->
+      <button
+        id='upvote-button-example'
+        type="button"
+        class="usa-button usa-button--unstyled margin-left-1"
+      >
+        <svg class="usa-icon text-middle" aria-hidden="true" focusable="false" role="img">
+          <use xlink:href="uswds-2.12.1/img/sprite.svg#thumb_up_alt"></use>
+        </svg>
+      </button>
+
+      <!-- Example button/svg that will accept the question -->
+      <button id="accept-answer-button-example" type="button" class="usa-button usa-button--unstyled margin-right-1">
+        <svg class="usa-icon text-middle" aria-hidden="true" focusable="false" role="img">
+          <use xlink:href="uswds-2.12.1/img/sprite.svg#check_circle_outline"></use>
+        </svg>
+      </button>
+
+      <!-- Example accepted icon -->
+      <span id='accepted-icon-example' class="text-green">
+        <span>ACCEPTED</span>
+        <svg class="usa-icon margin-right-1 text-middle" aria-hidden="true" focusable="false" role="img">
+          <use xlink:href="uswds-2.12.1/img/sprite.svg#check_circle"></use>
+        </svg>
+      </span>
+
+      <!-- END LIST ANSWERS -->
+    </div>
+
+    <div id="answer-buttons" class="grid-row margin-bottom-2" style="display: none">
+      <!-- START ANSWER FORM -->
+      <div class="grid-offset-1 grid-col-10">
+        <button
+                id="toggle-answer-button"
+                type="button"
+                class="usa-button usa-button--outline"
+                onclick="toggleAnswerForm()">
+          Provide an Answer
+        </button>
+      </div>
+
+      <div id="answer-form-section" class="grid-offset-1 grid-col-10" style="display: none">
+        <form id="answer-form">
+          <input type="hidden" id="question_id" name="question_id" value="">
+
+          <div class="usa-form-group" id="answer-group">
+            <label for="answer" class="usa-label" id="answer-label">Enter your answer</label>
+            <span class="usa-error-message" id="answer-error-message" style="display: none">
+              Answer is required
+            </span>
+            <textarea
+              class="usa-textarea"
+              id="answer"
+              name="answer"
+            ></textarea>
+          </div>
+
+          <ul class="usa-button-group margin-top-1">
+            <li class="usa-button-group__item">
+              <button
+                type="button"
+                class="usa-button usa-button--outline"
+                onclick="toggleAnswerForm()">
+                Cancel
+              </button>
+            </li>
+            <li class="usa-button-group__item">
+              <button type="button" class="usa-button" onclick="answerQuestion()">Submit</button>
+            </li>
+          </ul>
+
+          <div
+            id="add-answer-error"
+            class="text-red"
+            style="display: none">
+            Error occurred when trying to add an answer.
+          </div>
+        </form>
+      </div>
+      <!-- END ANSWER FORM -->
+    </div>
+  </div>
+
+</main>
+
+</body>
+</html>

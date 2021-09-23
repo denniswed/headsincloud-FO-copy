@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FedOverflow</title>
+
+    <script src="uswds-2.12.1/js/uswds-init.min.js"></script>
+    <link rel="stylesheet" href="uswds-2.12.1/css/uswds.min.css">
+</head>
+<body>
+
+<script src="uswds-2.12.1/js/uswds.min.js"></script>
+<script src="app.js"></script>
+<script>document.addEventListener('DOMContentLoaded', fetchQuestions);</script>
+
+<!-- BEGIN HEADER ROW -->
+<div class="usa-overlay"></div>
+<header class="usa-header usa-header--basic">
+    <div class="usa-nav-container">
+        <div class="usa-navbar">
+            <div class="usa-logo" id="basic-logo">
+                <em class="usa-logo__text">
+                    <a href="index.html" title="&lt;Project title&gt;">
+                        <svg class="usa-icon text-middle" aria-hidden="true" focusable="false" role="img">
+                            <use xlink:href="uswds-2.12.1/img/sprite.svg#code"></use>
+                        </svg><span class="text-primary">Fed</span>Overflow
+                    </a>
+                </em>
+            </div>
+            <button class="usa-menu-btn">Menu</button>
+        </div>
+        <nav aria-label="Primary navigation" class="usa-nav">
+            <button class="usa-nav__close">
+                <img src="uswds-2.12.1/img/usa-icons/close.svg" role="img" alt="Close" />
+            </button>
+            <ul class="usa-nav__primary usa-accordion">
+                <li class="usa-nav__primary-item">
+                    <button
+                            class="usa-accordion__button usa-nav__link usa-current"
+                            aria-expanded="false"
+                            aria-controls="basic-nav-section-one"
+                    >
+                        <span>Questions</span>
+                    </button>
+
+                    <ul id="basic-nav-section-one" class="usa-nav__submenu">
+                        <li class="usa-nav__submenu-item">
+                            <a href="index.html"> Browse Questions </a>
+                        </li>
+                        <li class="usa-nav__submenu-item">
+                            <a href="ask-question.html"> Ask a Question </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="usa-nav__primary-item">
+                    <a href="trends.html" class="usa-nav__link">
+                        <span>Trends</span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- TODO if we have time -->
+<!--            <form class="usa-search usa-search&#45;&#45;small" role="search">-->
+<!--                <label class="usa-sr-only" for="basic-search-field-en-small">-->
+<!--                    Search-->
+<!--                </label>-->
+<!--                <input-->
+<!--                        class="usa-input"-->
+<!--                        id="basic-search-field-en-small"-->
+<!--                        type="search"-->
+<!--                        name="search"-->
+<!--                />-->
+<!--                <button class="usa-button" type="submit">-->
+<!--                    <span class="usa-sr-only">Search</span>-->
+<!--                </button>-->
+<!--            </form>-->
+        </nav>
+    </div>
+</header>
+<!-- END HEADER ROW -->
+
+<main id="main-content">
+
+    <!-- START LIST OF EXISTING QUESTIONS -->
+    <div class="grid-container margin-top-3 margin-bottom-2">
+        <div class="grid-row">
+            <div class="grid-col-12">
+                <button
+                    type="button"
+                    class="usa-button usa-button--outline"
+                    onclick="navigateToAsk()">
+                    Ask a Question
+                </button>
+
+                <h3 class="margin-top-3">Browse Questions</h3>
+                <div id="loading">Loading...</div>
+
+                <table class="usa-table usa-table--borderless width-full">
+                    <tbody id="question-list">
+                    </tbody>
+                </table>
+
+                <!-- Example comments icon -->
+                <svg id="answer-icon-example" class="usa-icon text-middle margin-right-05 text-blue" aria-hidden="true" focusable="false" role="img">
+                    <use xlink:href="uswds-2.12.1/img/sprite.svg#comment"></use>
+                </svg>
+
+                <!-- Example accepted icon -->
+                <svg id="accepted-icon-example" class="usa-icon text-middle margin-left-05 text-green" aria-hidden="true" focusable="false" role="img">
+                    <use xlink:href="uswds-2.12.1/img/sprite.svg#check_circle"></use>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <!-- END LIST OF EXISTING QUESTIONS -->
+
+</main>
+
+</body>
+</html>
